@@ -1,18 +1,24 @@
 package main.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import main.model.LoginModel;
+import javafx.stage.Stage;
 
+import java.awt.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     public LoginModel loginModel = new LoginModel();
+    Stage window;
     @FXML
     private Label isConnected;
     @FXML
@@ -34,12 +40,16 @@ public class LoginController implements Initializable {
     /* login Action method
        check if user input is the same as database.
      */
-    public void Login(ActionEvent event){
+    public void Login(ActionEvent event) throws Exception{
 
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
 
                 isConnected.setText("Logged in successfully");
+                window = (Stage) isConnected.getScene().getWindow();
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/main/ui/booking.fxml")));
+                window.setScene(scene);
+                window.show();
             }else{
                 isConnected.setText("username and password is incorrect");
             }
