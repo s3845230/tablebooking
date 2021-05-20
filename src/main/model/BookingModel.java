@@ -55,17 +55,17 @@ public class BookingModel {
             for (int i = 1; i < 10; i++) {
                 String query = "select status from Bookings where date = ? and tableid= ?";
                 preparedStatement = connection.prepareStatement(query);
-                System.out.println(date);
-                System.out.println(i);
+//                System.out.println(date);
+//                System.out.println(i);
                 preparedStatement.setString(1, date);
                 preparedStatement.setString(2, String.valueOf(i));
-                System.out.println(preparedStatement);
+//                System.out.println(preparedStatement);
 
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
-                    System.out.println("test");
+//                    System.out.println("test");
                     statusList.add(resultSet.getString("status"));
-                    System.out.println(statusList.get(i-1));
+//                    System.out.println(statusList.get(i-1));
                 }
                 else {
                     statusList.add("open");
@@ -79,6 +79,44 @@ public class BookingModel {
             resultSet.close();
         }
         return statusList;
+    }
+
+    // NEED TO SEND TO ADMIN TO APPROVE
+    public void updateBooking(String date, int tableid) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT date FROM Bookings WHERE date = ? and tableid= ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, date);
+            preparedStatement.setString(2, String.valueOf(tableid));
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                query = "UPDATE Bookings SET status = ? WHERE date = ? and tableid= ?";
+                System.out.println(query);
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, "taken");
+                preparedStatement.setString(2, date);
+                preparedStatement.setString(3, String.valueOf(tableid));
+
+                preparedStatement.executeUpdate();
+            }
+            else {
+                query = "INSERT INTO Bookings (date, tableid, status) VALUES (?, ?, ?)";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, date);
+                preparedStatement.setString(2, String.valueOf(tableid));
+                preparedStatement.setString(3, "taken");
+                System.out.println(preparedStatement);
+                preparedStatement.executeUpdate();
+            }
+        }
+        catch(Exception e){
+        } finally{
+            preparedStatement.close();
+            resultSet.close();
+        }
     }
 
 //    public Boolean isLogin(String user, String pass) throws SQLException {
