@@ -2,13 +2,16 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import main.model.BookingModel;
 import org.w3c.dom.css.Rect;
 
@@ -19,6 +22,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
+    Stage window;
+    private String currentUsername;
     public BookingModel bookingModel = new BookingModel();
     @FXML
     private Label isConnected;
@@ -54,7 +59,6 @@ public class BookingController implements Initializable {
 //    private TextField txtPassword;
 
 
-    // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources){
         rectangles.add(Table1);
@@ -73,6 +77,11 @@ public class BookingController implements Initializable {
             isConnected.setText("Not Connected");
         }
     }
+
+    void setCurrentUsername(String currentUsername) {
+        this.currentUsername = currentUsername;
+    }
+
 
     public void refreshDate(ActionEvent event) throws Exception{
         System.out.println(dateSelection.getValue());
@@ -99,9 +108,21 @@ public class BookingController implements Initializable {
         }
     }
 
+    public void pathToMenu(ActionEvent event) throws Exception{
+
+        window = (Stage) isConnected.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/menu.fxml"));
+        Scene scene = new Scene(loader.load());
+        window.setScene(scene);
+        window.show();
+        MenuController menuController = loader.getController();
+        menuController.setCurrentUsername(currentUsername);
+    }
+
     public void submitBooking(ActionEvent event) throws Exception {
         int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
         bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable);
+        System.out.println(currentUsername);
     }
     /* login Action method
        check if user input is the same as database.

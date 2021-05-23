@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.MenuController">
+    <children>
+            <Label fx:id="isConnected" layoutY="583.0" text="Status">
+
+            </Label>
+      <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" onAction="#pathToBooking" prefWidth="140.0" text="Create Booking" />
+      <Button layoutX="130.0" layoutY="150.0" mnemonicParsing="false" prefWidth="140.0" text="Cancel Next Booking" />
+      <Button layoutX="130.0" layoutY="200.0" mnemonicParsing="false" onAction="#pathToPDetails" prefWidth="140.0" text="Edit Personal Details" />
+
+
+    </children>
+
+</AnchorPane>

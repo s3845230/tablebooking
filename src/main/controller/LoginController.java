@@ -47,9 +47,12 @@ public class LoginController implements Initializable {
 
                 isConnected.setText("Logged in successfully");
                 window = (Stage) isConnected.getScene().getWindow();
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/main/ui/booking.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/menu.fxml"));
+                Scene scene = new Scene(loader.load());
                 window.setScene(scene);
                 window.show();
+                MenuController menuController = loader.getController();
+                menuController.setCurrentUsername(txtUsername.getText());
             }else{
                 isConnected.setText("username and password is incorrect");
             }

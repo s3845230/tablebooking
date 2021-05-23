@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PDetailsController">
+    <children>
+      <Label fx:id="isConnected11" layoutX="158.0" layoutY="30.0" text="Personal Details" />
+      <Label fx:id="isConnected1" layoutX="50.0" layoutY="80.0" text="Username:" />
+      <Label fx:id="isConnected12" layoutX="50.0" layoutY="110.0" text="Role:" />
+      <Label fx:id="isConnected121" layoutX="50.0" layoutY="140.0" text="First Name:" />
+      <Label fx:id="isConnected1211" layoutX="50.0" layoutY="170.0" text="Surname:" />
+      <Label fx:id="isConnected12111" layoutX="50.0" layoutY="200.0" text="Password:" />
+      <Label fx:id="isConnected121111" layoutX="50.0" layoutY="260.0" text="Secret Question:" />
+      <Label fx:id="isConnected1211111" layoutX="50.0" layoutY="320.0" text="Secret Question Answer:" />
+      <TextField fx:id="txtUsername" layoutX="210.0" layoutY="75.0" />
+      <TextField fx:id="txtRole" layoutX="210.0" layoutY="105.0" />
+      <TextField fx:id="txtFirstName" layoutX="210.0" layoutY="135.0" />
+      <TextField fx:id="txtSurname" layoutX="210.0" layoutY="165.0" />
+      <PasswordField fx:id="txtPassword" layoutX="210.0" layoutY="195.0" />
+      <TextArea fx:id="txtSecretQuestion" layoutX="210.0" layoutY="225.0" prefHeight="85.0" prefWidth="149.0" />
+      <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
+      <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitPDetails" prefWidth="140.0" text="Submit Changes" />
+        <Button layoutX="160.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="80.0" text="Menu" />
+            <Label fx:id="isConnected" layoutY="583.0" text="Status">
+
+            </Label>
+
+
+    </children>
+
+</AnchorPane>
