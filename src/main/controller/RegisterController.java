@@ -2,26 +2,23 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.model.BookingModel;
 import main.model.PDetailsModel;
+import main.model.RegisterModel;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class PDetailsController extends SuperController implements Initializable {
+public class RegisterController extends SuperController implements Initializable {
     Stage window;
-    public PDetailsModel pDetailsModel = new PDetailsModel();
-    ArrayList<String> currentDetails;
+    public RegisterModel registerModel = new RegisterModel();
     @FXML
     private Label isConnected;
     @FXML
@@ -42,25 +39,15 @@ public class PDetailsController extends SuperController implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        if (pDetailsModel.isDbConnected()){
+        if (registerModel.isDbConnected()){
             isConnected.setText("Connected");
         }else{
             isConnected.setText("Not Connected");
         }
     }
 
-    public void setUp() throws SQLException {
-        currentDetails = pDetailsModel.getDetails(currentId);
-        if (currentDetails.size() > 0) {
-            txtUsername.setText(currentDetails.get(0));
-            txtFirstName.setText(currentDetails.get(1));
-            txtSurname.setText(currentDetails.get(2));
-            txtRole.setText(currentDetails.get(4));
-            txtSecretQuestion.setText(currentDetails.get(5));
-        }
-    }
-
-    public void submitPDetails(ActionEvent event) throws Exception{
+    public void register(ActionEvent event) throws Exception{
+        boolean valid = true;
         ArrayList<String> newDetails = new ArrayList<String>();
         newDetails.add(txtUsername.getText());
         newDetails.add(txtFirstName.getText());
@@ -71,17 +58,15 @@ public class PDetailsController extends SuperController implements Initializable
         newDetails.add(txtSecretQuestionAnswer.getText());
         for (int i = 0; i < 7; i++) {
             if (newDetails.get(i).equals("")) {
-                newDetails.set(i, currentDetails.get(i));
+                valid = false;
             }
         }
-        pDetailsModel.updateDetails(newDetails, currentId);
+        registerModel.createDetails(newDetails, currentId);
     }
-//    String query = "UPDATE Employees SET username = ? AND name = ? AND 'sure name' = ? AND password = ? AND role = ? AND " +
-//            "'secret question' = ? AND answer = ? WHERE id = ?";
 
-    public void pathToMenu(ActionEvent event) throws Exception{
+    public void pathToLogin(ActionEvent event) throws Exception{
         window = (Stage) isConnected.getScene().getWindow();
-        swapScene(pathToMenu, window);
+        swapScene(pathToLogin, window);
     }
 
 }

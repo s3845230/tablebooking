@@ -16,7 +16,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends SuperController implements Initializable {
     public LoginModel loginModel = new LoginModel();
     Stage window;
     @FXML
@@ -35,7 +35,6 @@ public class LoginController implements Initializable {
         }else{
             isConnected.setText("Not Connected");
         }
-
     }
     /* login Action method
        check if user input is the same as database.
@@ -43,16 +42,11 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event) throws Exception{
 
         try {
-            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-
+            currentId = loginModel.isLogin(txtUsername.getText(),txtPassword.getText());
+            if (currentId > 0){
                 isConnected.setText("Logged in successfully");
                 window = (Stage) isConnected.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/menu.fxml"));
-                Scene scene = new Scene(loader.load());
-                window.setScene(scene);
-                window.show();
-                MenuController menuController = loader.getController();
-                menuController.setCurrentUsername(txtUsername.getText());
+                swapScene(pathToMenu,window);
             }else{
                 isConnected.setText("username and password is incorrect");
             }
@@ -61,10 +55,31 @@ public class LoginController implements Initializable {
         }
     }
 
+    public void pathToRegister(ActionEvent event) throws Exception {
+        window = (Stage) isConnected.getScene().getWindow();
+        swapScene(pathToRegister,window);
+    }
+
 
 
 
     //11.2.3 big sur
+//TODO
+    // REGISTER -done
+    // RESET PASSWORD
+    // BOOKING -> GO TO ADMIN
+    // ADMIN
+        // CANCEL/REJECT BOOKING
+        // COVID SAFE SEATING
+        // COVID LOCKDOWN SEATS
+        // UPDATE ACCOUNTS
+        // REGISTER EMPLOYEES
+        // GENERATE CSV REPORT
+
+    // MAKE SPECIAL ADMIN MENU THAT ONLY ADMINS CAN ACCESS
+    // FIX REFRESH BUTTON IN BOOKING, UNNECESSARY
+    //
+
 
 
 

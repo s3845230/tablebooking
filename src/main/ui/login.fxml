@@ -28,6 +28,11 @@
          <font>
             <Font name="System Font" size="13.0" />
          </font></Button>
+      <Button layoutX="125.0" layoutY="180.0" mnemonicParsing="false" onAction="#pathToRegister" prefHeight="30.0" prefWidth="150.0" text="Register">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
 
 
     </children>

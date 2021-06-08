@@ -38,7 +38,7 @@
             <Label alignment="CENTER" layoutX="10.0" layoutY="52.0" text="Table 9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <DatePicker fx:id="dateSelection" layoutX="60.0" layoutY="50.0" maxWidth="180.0" minWidth="180.0" onAction="#refreshDate" prefWidth="180.0" />
+      <DatePicker fx:id="dateSelection" layoutX="60.0" layoutY="50.0" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
       <ComboBox fx:id="tableSelection" layoutX="130.0" layoutY="450.0" prefWidth="140.0" promptText="Select Table" />
       <Button layoutX="130.0" layoutY="525.0" mnemonicParsing="false" onAction="#submitBooking" prefWidth="140.0" text="Submit Booking" />
       <Button layoutX="260.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshDate" prefWidth="80.0" text="Refresh" />

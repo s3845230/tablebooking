@@ -2,26 +2,20 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.model.BookingModel;
-import org.w3c.dom.css.Rect;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
-public class BookingController extends SuperController implements Initializable {
+public class BookingAdminController extends SuperController implements Initializable {
     Stage window;
     public BookingModel bookingModel = new BookingModel();
     @FXML
@@ -79,6 +73,7 @@ public class BookingController extends SuperController implements Initializable 
 
 
     public void refreshDate(ActionEvent event) throws Exception{
+        System.out.println(dateSelection.getValue());
         if (dateSelection.getValue() != null) {
             isConnected.setText("Connected");
             ArrayList<String> tableStatuses = bookingModel.tableStatus(String.valueOf(dateSelection.getValue()));
@@ -105,6 +100,12 @@ public class BookingController extends SuperController implements Initializable 
     public void pathToMenu(ActionEvent event) throws Exception{
 
         window = (Stage) isConnected.getScene().getWindow();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/menu.fxml"));
+//        Scene scene = new Scene(loader.load());
+//        window.setScene(scene);
+//        window.show();
+//        MenuController menuController = loader.getController();
+//        menuController.setCurrentUsername(currentUsername);
         swapScene(pathToMenu,window);
     }
 
@@ -112,6 +113,22 @@ public class BookingController extends SuperController implements Initializable 
         int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
         bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable);
     }
+    /* login Action method
+       check if user input is the same as database.
+     */
+//    public void Login(ActionEvent event){
+//
+//        try {
+//            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
+//
+//                isConnected.setText("Logged in successfully");
+//            }else{
+//                isConnected.setText("username and password is incorrect");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 

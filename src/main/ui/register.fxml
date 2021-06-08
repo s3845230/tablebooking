@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PDetailsController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.RegisterController">
     <children>
-      <Label fx:id="isConnected11" layoutX="158.0" layoutY="35.0" text="Personal Details" />
+      <Label fx:id="isConnected11" layoutX="149.0" layoutY="35.0" text="Enter Details Below" />
       <Label fx:id="isConnected1" layoutX="50.0" layoutY="80.0" text="Username:" />
       <Label fx:id="isConnected12" layoutX="50.0" layoutY="110.0" text="Role:" />
       <Label fx:id="isConnected121" layoutX="50.0" layoutY="140.0" text="First Name:" />
@@ -20,8 +20,8 @@
       <PasswordField fx:id="txtPassword" layoutX="210.0" layoutY="195.0" />
       <TextArea fx:id="txtSecretQuestion" layoutX="210.0" layoutY="225.0" prefHeight="85.0" prefWidth="149.0" />
       <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
-      <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitPDetails" prefWidth="140.0" text="Submit Changes" />
-        <Button layoutX="160.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="80.0" text="Menu" />
+      <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#register" prefWidth="140.0" text="Create Account" />
+        <Button layoutX="140.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToLogin" prefWidth="120.0" text="Back to Login" />
             <Label fx:id="isConnected" layoutY="583.0" text="Status">
 
             </Label>
