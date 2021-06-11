@@ -46,7 +46,6 @@ public class BookingModel {
 //            resultSet.close();
 //        }
 //    }
-
     public ArrayList<String> tableStatus(String date) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -82,7 +81,7 @@ public class BookingModel {
     }
 
     // NEED TO SEND TO ADMIN TO APPROVE
-    public void updateBooking(String date, int tableid) throws SQLException {
+    public void updateBooking(String date, int tableid, int employeeID) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
@@ -93,7 +92,7 @@ public class BookingModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                query = "UPDATE Bookings SET status = ? WHERE date = ? and tableid= ?";
+                query = "UPDATE Bookings SET status = ?, employeeID = ? WHERE date = ? and tableid= ?";
                 System.out.println(query);
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, "taken");

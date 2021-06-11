@@ -57,4 +57,33 @@ public class LoginModel {
 
     }
 
+    public boolean isAdmin(int userID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select 'is admin' from employees where id = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, String.valueOf(userID));
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                if (resultSet.getString("is admin").equals("true")) {
+                    return true;
+                }
+                return false;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+    }
+
 }

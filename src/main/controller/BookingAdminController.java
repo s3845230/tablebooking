@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import main.model.BookingAdminModel;
 import main.model.BookingModel;
 
 import java.net.URL;
@@ -16,10 +17,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BookingAdminController extends SuperController implements Initializable {
-    Stage window;
-    public BookingModel bookingModel = new BookingModel();
-    @FXML
-    private Label isConnected;
+    public BookingAdminModel bookingAdminModel = new BookingAdminModel();
     @FXML
     private Rectangle Table1;
     @FXML
@@ -64,10 +62,10 @@ public class BookingAdminController extends SuperController implements Initializ
         rectangles.add(Table8);
         rectangles.add(Table9);
 
-        if (bookingModel.isDbConnected()){
-            isConnected.setText("Connected");
+        if (bookingAdminModel.isDbConnected()){
+            currentStatus.setText("Connected");
         }else{
-            isConnected.setText("Not Connected");
+            currentStatus.setText("Not Connected");
         }
     }
 
@@ -75,8 +73,8 @@ public class BookingAdminController extends SuperController implements Initializ
     public void refreshDate(ActionEvent event) throws Exception{
         System.out.println(dateSelection.getValue());
         if (dateSelection.getValue() != null) {
-            isConnected.setText("Connected");
-            ArrayList<String> tableStatuses = bookingModel.tableStatus(String.valueOf(dateSelection.getValue()));
+            currentStatus.setText("Connected");
+            ArrayList<String> tableStatuses = bookingAdminModel.tableStatus(String.valueOf(dateSelection.getValue()));
             tableSelection.getItems().clear();
             for (int i = 0; i < 9; i++) {
                 String status = tableStatuses.get(i);
@@ -93,48 +91,12 @@ public class BookingAdminController extends SuperController implements Initializ
             }
         }
         else {
-            isConnected.setText("Date required");
+            currentStatus.setText("Date required");
         }
-    }
-
-    public void pathToMenu(ActionEvent event) throws Exception{
-
-        window = (Stage) isConnected.getScene().getWindow();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/ui/menu.fxml"));
-//        Scene scene = new Scene(loader.load());
-//        window.setScene(scene);
-//        window.show();
-//        MenuController menuController = loader.getController();
-//        menuController.setCurrentUsername(currentUsername);
-        swapScene(pathToMenu,window);
     }
 
     public void submitBooking(ActionEvent event) throws Exception {
         int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
-        bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable);
+        bookingAdminModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable, currentId);
     }
-    /* login Action method
-       check if user input is the same as database.
-     */
-//    public void Login(ActionEvent event){
-//
-//        try {
-//            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-//
-//                isConnected.setText("Logged in successfully");
-//            }else{
-//                isConnected.setText("username and password is incorrect");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-
-    //11.2.3 big sur
-
-
-
 }

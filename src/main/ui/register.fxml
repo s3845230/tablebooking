@@ -22,7 +22,7 @@
       <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
       <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#register" prefWidth="140.0" text="Create Account" />
         <Button layoutX="140.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToLogin" prefWidth="120.0" text="Back to Login" />
-            <Label fx:id="isConnected" layoutY="583.0" text="Status">
+            <Label fx:id="currentStatus" layoutY="583.0" text="Status">
 
             </Label>
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -18,9 +19,6 @@ import java.util.ResourceBundle;
 
 public class LoginController extends SuperController implements Initializable {
     public LoginModel loginModel = new LoginModel();
-    Stage window;
-    @FXML
-    private Label isConnected;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -31,9 +29,9 @@ public class LoginController extends SuperController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         if (loginModel.isDbConnected()){
-            isConnected.setText("Connected");
+            currentStatus.setText("Connected");
         }else{
-            isConnected.setText("Not Connected");
+            currentStatus.setText("Not Connected");
         }
     }
     /* login Action method
@@ -44,21 +42,23 @@ public class LoginController extends SuperController implements Initializable {
         try {
             currentId = loginModel.isLogin(txtUsername.getText(),txtPassword.getText());
             if (currentId > 0){
-                isConnected.setText("Logged in successfully");
-                window = (Stage) isConnected.getScene().getWindow();
-                swapScene(pathToMenu,window);
+                isAdmin = loginModel.isAdmin(currentId);
+                if (isAdmin) {
+                    currentStatus.setText("Logged in as admin");
+                    swapScene(pathToAdminMenu);
+                }
+                else {
+                    currentStatus.setText("Logged in successfully");
+                    swapScene(pathToMenu);
+                }
             }else{
-                isConnected.setText("username and password is incorrect");
+                currentStatus.setText("username and password is incorrect");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void pathToRegister(ActionEvent event) throws Exception {
-        window = (Stage) isConnected.getScene().getWindow();
-        swapScene(pathToRegister,window);
-    }
 
 
 

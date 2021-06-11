@@ -8,19 +8,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.model.PDetailsModel;
 import main.model.RegisterModel;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RegisterController extends SuperController implements Initializable {
-    Stage window;
     public RegisterModel registerModel = new RegisterModel();
-    @FXML
-    private Label isConnected;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -40,9 +35,9 @@ public class RegisterController extends SuperController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources){
         if (registerModel.isDbConnected()){
-            isConnected.setText("Connected");
+            currentStatus.setText("Connected");
         }else{
-            isConnected.setText("Not Connected");
+            currentStatus.setText("Not Connected");
         }
     }
 
@@ -62,11 +57,6 @@ public class RegisterController extends SuperController implements Initializable
             }
         }
         registerModel.createDetails(newDetails, currentId);
-    }
-
-    public void pathToLogin(ActionEvent event) throws Exception{
-        window = (Stage) isConnected.getScene().getWindow();
-        swapScene(pathToLogin, window);
     }
 
 }

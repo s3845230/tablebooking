@@ -22,10 +22,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class BookingController extends SuperController implements Initializable {
-    Stage window;
     public BookingModel bookingModel = new BookingModel();
-    @FXML
-    private Label isConnected;
     @FXML
     private Rectangle Table1;
     @FXML
@@ -71,16 +68,16 @@ public class BookingController extends SuperController implements Initializable 
         rectangles.add(Table9);
 
         if (bookingModel.isDbConnected()){
-            isConnected.setText("Connected");
+            currentStatus.setText("Connected");
         }else{
-            isConnected.setText("Not Connected");
+            currentStatus.setText("Not Connected");
         }
     }
 
 
     public void refreshDate(ActionEvent event) throws Exception{
         if (dateSelection.getValue() != null) {
-            isConnected.setText("Connected");
+            currentStatus.setText("Connected");
             ArrayList<String> tableStatuses = bookingModel.tableStatus(String.valueOf(dateSelection.getValue()));
             tableSelection.getItems().clear();
             for (int i = 0; i < 9; i++) {
@@ -98,26 +95,13 @@ public class BookingController extends SuperController implements Initializable 
             }
         }
         else {
-            isConnected.setText("Date required");
+            currentStatus.setText("Date required");
         }
-    }
-
-    public void pathToMenu(ActionEvent event) throws Exception{
-
-        window = (Stage) isConnected.getScene().getWindow();
-        swapScene(pathToMenu,window);
     }
 
     public void submitBooking(ActionEvent event) throws Exception {
         int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
-        bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable);
+        bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable, currentId);
+        //implement desk checking if you can, alot of work
     }
-
-
-
-
-    //11.2.3 big sur
-
-
-
 }

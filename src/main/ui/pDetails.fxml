@@ -22,7 +22,7 @@
       <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
       <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitPDetails" prefWidth="140.0" text="Submit Changes" />
         <Button layoutX="160.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="80.0" text="Menu" />
-            <Label fx:id="isConnected" layoutY="583.0" text="Status">
+            <Label fx:id="currentStatus" layoutY="583.0" text="Status">
 
             </Label>
 

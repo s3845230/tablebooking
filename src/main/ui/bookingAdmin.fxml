@@ -42,7 +42,7 @@
       <ComboBox fx:id="tableSelection" layoutX="130.0" layoutY="450.0" prefWidth="140.0" promptText="Select Table" />
       <Button layoutX="130.0" layoutY="525.0" mnemonicParsing="false" onAction="#submitBooking" prefWidth="140.0" text="Submit Booking" />
       <Button layoutX="260.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshDate" prefWidth="80.0" text="Refresh" />
-      <Label fx:id="isConnected" layoutY="583.0" text="Status" />
+      <Label fx:id="currentStatus" layoutY="583.0" text="Status" />
       <Button layoutX="160.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="80.0" text="Menu" />
    </children>
 </AnchorPane>

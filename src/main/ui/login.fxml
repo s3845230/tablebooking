@@ -8,12 +8,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
     <children>
-            <Label fx:id="isConnected" layoutY="583.0" text="Status">
+            <Label fx:id="currentStatus" layoutY="583.0" text="Status">
 
             </Label>
-      <TextField fx:id="txtUsername" layoutX="125.0" layoutY="55.0" />
-      <PasswordField fx:id="txtPassword" layoutX="125.0" layoutY="100.0" />
-      <Button defaultButton="true" layoutX="125.0" layoutY="140.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="150.0" text="Login" textAlignment="CENTER" textFill="WHITE">
+      <TextField fx:id="txtUsername" layoutX="100.0" layoutY="70.0" prefWidth="200.0" />
+      <PasswordField fx:id="txtPassword" layoutX="100.0" layoutY="160.0" prefWidth="200.0" />
+      <Button defaultButton="true" layoutX="125.0" layoutY="210.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="120.0" text="Login" textAlignment="CENTER" textFill="WHITE">
          <effect>
             <Lighting bumpInput="$null">
                <light>
@@ -28,11 +28,14 @@
          <font>
             <Font name="System Font" size="13.0" />
          </font></Button>
-      <Button layoutX="125.0" layoutY="180.0" mnemonicParsing="false" onAction="#pathToRegister" prefHeight="30.0" prefWidth="150.0" text="Register">
+      <Button layoutX="125.0" layoutY="260.0" mnemonicParsing="false" onAction="#pathToRegister" prefHeight="30.0" prefWidth="150.0" text="Register">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+      <Label layoutX="100.0" layoutY="130.0" text="Password" />
+      <Label layoutX="100.0" layoutY="40.0" text="Username" />
+      <Button layoutX="190.0" layoutY="125.0" mnemonicParsing="false" onAction="#pathToResetPassword" text="Forgot Password?" />
 
 
     </children>

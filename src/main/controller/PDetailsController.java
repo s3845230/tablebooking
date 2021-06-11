@@ -19,11 +19,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PDetailsController extends SuperController implements Initializable {
-    Stage window;
     public PDetailsModel pDetailsModel = new PDetailsModel();
     ArrayList<String> currentDetails;
-    @FXML
-    private Label isConnected;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -43,9 +40,9 @@ public class PDetailsController extends SuperController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources){
         if (pDetailsModel.isDbConnected()){
-            isConnected.setText("Connected");
+            currentStatus.setText("Connected");
         }else{
-            isConnected.setText("Not Connected");
+            currentStatus.setText("Not Connected");
         }
     }
 
@@ -78,10 +75,5 @@ public class PDetailsController extends SuperController implements Initializable
     }
 //    String query = "UPDATE Employees SET username = ? AND name = ? AND 'sure name' = ? AND password = ? AND role = ? AND " +
 //            "'secret question' = ? AND answer = ? WHERE id = ?";
-
-    public void pathToMenu(ActionEvent event) throws Exception{
-        window = (Stage) isConnected.getScene().getWindow();
-        swapScene(pathToMenu, window);
-    }
 
 }
