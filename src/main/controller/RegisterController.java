@@ -56,7 +56,12 @@ public class RegisterController extends SuperController implements Initializable
                 valid = false;
             }
         }
-        registerModel.createDetails(newDetails, currentId);
+        if (registerModel.createDetails(newDetails, currentId)) {
+            currentStatus.setText("Details Updated");
+        }
+        else {
+            currentStatus.setText("Details not Updated");
+        }
     }
 
 }

@@ -71,7 +71,12 @@ public class PDetailsController extends SuperController implements Initializable
                 newDetails.set(i, currentDetails.get(i));
             }
         }
-        pDetailsModel.updateDetails(newDetails, currentId);
+        if (pDetailsModel.updateDetails(newDetails, currentId)) {
+            currentStatus.setText("Details Updated");
+        }
+        else {
+            currentStatus.setText("Details not Updated");
+        }
     }
 //    String query = "UPDATE Employees SET username = ? AND name = ? AND 'sure name' = ? AND password = ? AND role = ? AND " +
 //            "'secret question' = ? AND answer = ? WHERE id = ?";

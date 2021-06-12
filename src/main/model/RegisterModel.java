@@ -29,7 +29,7 @@ public class RegisterModel {
         }
     }
 
-    public void createDetails(ArrayList<String> newDetails, int currentId) throws SQLException {
+    public boolean createDetails(ArrayList<String> newDetails, int currentId) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
             String query = "INSERT INTO Employees (username, 'first name', surname, password, role, 'secret question', answer) " +
@@ -45,9 +45,11 @@ public class RegisterModel {
             System.out.println(preparedStatement);
 
             preparedStatement.executeUpdate();
+            return true;
 
         }
         catch(Exception e){
+            return false;
         } finally{
             preparedStatement.close();
         }

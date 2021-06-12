@@ -60,7 +60,7 @@ public class PDetailsModel {
 
     }
 
-    public void updateDetails(ArrayList<String> newDetails, int currentId) throws SQLException {
+    public boolean updateDetails(ArrayList<String> newDetails, int currentId) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
             String query = "UPDATE Employees SET username = ?, 'first name' = ?, surname = ?, password = ?, role = ?, 'secret question' = ?, " +
@@ -76,9 +76,11 @@ public class PDetailsModel {
             preparedStatement.setString(8, String.valueOf(currentId));
 
             preparedStatement.executeUpdate();
+            return true;
 
         }
         catch(Exception e){
+            return false;
         } finally{
             preparedStatement.close();
         }

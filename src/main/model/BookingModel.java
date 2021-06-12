@@ -52,6 +52,7 @@ public class BookingModel {
         ArrayList<String> statusList = new ArrayList<>();
         try {
             for (int i = 1; i < 10; i++) {
+                boolean found = false;
                 String query = "select status from Bookings where date = ? and tableid= ?";
                 preparedStatement = connection.prepareStatement(query);
 //                System.out.println(date);
@@ -63,10 +64,18 @@ public class BookingModel {
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
 //                    System.out.println("test");
-                    statusList.add(resultSet.getString("status"));
-//                    System.out.println(statusList.get(i-1));
+                    if (resultSet.getString("status").equals("open") || resultSet.getString("status").equals("taken") || resultSet.getString("status").equals("locked")) {
+                        statusList.add(resultSet.getString("status"));
+                        found = true;
+                    }
+                    while (resultSet.next()) {
+                        if (resultSet.getString("status").equals("open") || resultSet.getString("status").equals("taken") || resultSet.getString("status").equals("locked")) {
+                            statusList.add(resultSet.getString("status"));
+                            found = true;
+                        }
+                    }
                 }
-                else {
+                if (!found) {
                     statusList.add("open");
                 }
             }
@@ -85,30 +94,30 @@ public class BookingModel {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT date FROM Bookings WHERE date = ? and tableid= ?";
+            String query = "SELECT * FROM Bookings WHERE employeeid = ?";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, date);
-            preparedStatement.setString(2, String.valueOf(tableid));
-
+            preparedStatement.setString(1, String.valueOf(employeeID));
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                query = "UPDATE Bookings SET status = ?, employeeID = ? WHERE date = ? and tableid= ?";
-                System.out.println(query);
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, "taken");
-                preparedStatement.setString(2, date);
-                preparedStatement.setString(3, String.valueOf(tableid));
-
+                String query2 = "UPDATE Bookings SET tableid = ?, status = ?, date = ? WHERE employeeid = ?";
+                preparedStatement = connection.prepareStatement(query2);
+                preparedStatement.setString(1, String.valueOf(tableid));
+                preparedStatement.setString(2, "pending");
+                preparedStatement.setString(3, date);
+                preparedStatement.setString(4, String.valueOf(employeeID));
                 preparedStatement.executeUpdate();
+
             }
             else {
-                query = "INSERT INTO Bookings (date, tableid, status) VALUES (?, ?, ?)";
-                preparedStatement = connection.prepareStatement(query);
+
+                String query3 = "INSERT INTO Bookings (date, tableid, employeeid, status) VALUES (?, ?, ?, ?)";
+                preparedStatement = connection.prepareStatement(query3);
                 preparedStatement.setString(1, date);
                 preparedStatement.setString(2, String.valueOf(tableid));
-                preparedStatement.setString(3, "taken");
-                System.out.println(preparedStatement);
+                preparedStatement.setString(3, String.valueOf(employeeID));
+                preparedStatement.setString(4, "pending");
                 preparedStatement.executeUpdate();
+
             }
         }
         catch(Exception e){

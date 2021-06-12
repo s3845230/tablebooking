@@ -12,18 +12,23 @@ import java.sql.SQLException;
 public class SuperController {
     @FXML
     protected Label currentStatus;
+    @FXML
+    protected Label txtShownUsername;
     Stage window;
 
     protected int currentId = -1;
     protected boolean isAdmin = false;
     protected String pathToBooking = "/main/ui/booking.fxml";
-    protected String pathToBookingAdmin = "/main/ui/bookingAdmin.fxml";
+    protected String pathToBookingAdmin = "/main/ui/adminBooking.fxml";
     protected String pathToPDetails = "/main/ui/pDetails.fxml";
     protected String pathToMenu = "/main/ui/menu.fxml";
     protected String pathToLogin = "/main/ui/login.fxml";
     protected String pathToRegister = "/main/ui/register.fxml";
     protected String pathToResetPassword = "/main/ui/resetPassword.fxml";
     protected String pathToAdminMenu = "/main/ui/adminMenu.fxml";
+    protected String pathToAdminBooking = "/main/ui/adminBooking.fxml";
+    protected String pathToAdminAccounts = "/main/ui/adminAccounts.fxml";
+
 //    public void swapScene();
     void setCurrentId(int currentId) {
     this.currentId = currentId;
@@ -62,6 +67,12 @@ public class SuperController {
     }
     public void pathToRegister(ActionEvent event) throws Exception {
         swapScene(pathToRegister);
+    }
+    public void pathToAdminBooking(ActionEvent event) throws Exception {
+        swapScene(pathToAdminBooking);
+    }
+    public void pathToAdminAccounts(ActionEvent event) throws Exception {
+        swapScene(pathToAdminAccounts);
     }
     public void pathToAdminMenu(ActionEvent event) throws Exception {
         swapScene(pathToAdminMenu);

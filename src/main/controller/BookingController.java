@@ -86,6 +86,10 @@ public class BookingController extends SuperController implements Initializable 
                     rectangles.get(i).setFill(Color.GREEN);
                     tableSelection.getItems().add("Table " + (i+1));
                 }
+                if (status.equals("pending")) {
+                    rectangles.get(i).setFill(Color.GREEN);
+                    tableSelection.getItems().add("Table " + (i+1));
+                }
                 if (status.equals("taken")) {
                     rectangles.get(i).setFill(Color.RED);
                 }

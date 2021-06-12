@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AdminBookingController">
    <children>
       <GridPane layoutX="50.0" layoutY="100.0" prefHeight="300.0" prefWidth="300.0">
         <columnConstraints>
@@ -38,11 +38,13 @@
             <Label alignment="CENTER" layoutX="10.0" layoutY="52.0" text="Table 9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <DatePicker fx:id="dateSelection" layoutX="60.0" layoutY="50.0" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
-      <ComboBox fx:id="tableSelection" layoutX="130.0" layoutY="450.0" prefWidth="140.0" promptText="Select Table" />
-      <Button layoutX="130.0" layoutY="525.0" mnemonicParsing="false" onAction="#submitBooking" prefWidth="140.0" text="Submit Booking" />
-      <Button layoutX="260.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshDate" prefWidth="80.0" text="Refresh" />
+       <DatePicker fx:id="dateSelection" layoutX="110.0" layoutY="55.0" maxWidth="180.0" minWidth="180.0" onAction="#refreshDate" prefWidth="180.0" />
+       <ComboBox fx:id="bookingSelection" layoutX="130.0" layoutY="450.0" prefWidth="140.0" promptText="Select Booking" />
+      <Button layoutX="80.0" layoutY="525.0" mnemonicParsing="false" onAction="#reject" prefWidth="100.0" text="Reject" />
       <Label fx:id="currentStatus" layoutY="583.0" text="Status" />
-      <Button layoutX="160.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="80.0" text="Menu" />
+       <Button layoutX="155.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToAdminMenu" prefWidth="90.0" text="Admin Menu" />
+      <ComboBox fx:id="tableSelection" layoutX="130.0" layoutY="415.0" onAction="#fetchBookings" prefWidth="140.0" promptText="Select Table" />
+      <Button layoutX="220.0" layoutY="525.0" mnemonicParsing="false" onAction="#approve" prefWidth="100.0" text="Approve" />
+
    </children>
 </AnchorPane>

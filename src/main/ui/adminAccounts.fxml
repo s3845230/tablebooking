@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.PDetailsController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AdminAccountsController">
     <children>
       <Label fx:id="isConnected11" layoutX="158.0" layoutY="35.0" text="Personal Details" />
       <Label fx:id="isConnected1" layoutX="50.0" layoutY="80.0" text="Username:" />
@@ -22,7 +22,7 @@
       <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
 
       <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitPDetails" prefWidth="140.0" text="Submit Changes" />
-      <Button layoutX="155.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="90.0" text="Menu" />
+        <Button layoutX="155.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToAdminMenu" prefWidth="90.0" text="Admin Menu" />
             <Label fx:id="currentStatus" layoutY="583.0" text="Status">
 
             </Label>

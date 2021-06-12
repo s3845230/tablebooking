@@ -43,14 +43,9 @@ public class LoginController extends SuperController implements Initializable {
             currentId = loginModel.isLogin(txtUsername.getText(),txtPassword.getText());
             if (currentId > 0){
                 isAdmin = loginModel.isAdmin(currentId);
-                if (isAdmin) {
-                    currentStatus.setText("Logged in as admin");
-                    swapScene(pathToAdminMenu);
-                }
-                else {
-                    currentStatus.setText("Logged in successfully");
-                    swapScene(pathToMenu);
-                }
+                currentStatus.setText("Logged in successfully");
+                swapScene(pathToMenu);
+
             }else{
                 currentStatus.setText("username and password is incorrect");
             }
@@ -66,7 +61,7 @@ public class LoginController extends SuperController implements Initializable {
     //11.2.3 big sur
 //TODO
     // REGISTER -done
-    // RESET PASSWORD
+    // RESET PASSWORD -done
     // BOOKING -> GO TO ADMIN
     // ADMIN
         // CANCEL/REJECT BOOKING
