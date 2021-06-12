@@ -9,11 +9,9 @@
 
             </Label>
       <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" onAction="#pathToBooking" prefWidth="140.0" text="Create Booking" />
-      <Button layoutX="130.0" layoutY="150.0" mnemonicParsing="false" prefWidth="140.0" text="Cancel Next Booking" />
-      <Button layoutX="130.0" layoutY="200.0" mnemonicParsing="false" onAction="#pathToPDetails" prefWidth="140.0" text="Edit Personal Details" />
+      <Button layoutX="130.0" layoutY="150.0" mnemonicParsing="false" onAction="#pathToPDetails" prefWidth="140.0" text="Edit Personal Details" />
       <Button layoutX="130.0" layoutY="250.0" mnemonicParsing="false" onAction="#pathToLogin" prefWidth="140.0" text="Log Out" />
-      <Button fx:id="adminMenuButton" layoutX="130.0" layoutY="50.0" mnemonicParsing="false" onAction="#pathToAdminMenu" prefWidth="140.0" text="Admin Menu" />
-
+        <Label fx:id="isConnected11" layoutX="170.0" layoutY="35.0" text="Main Menu" />
 
 
     </children>

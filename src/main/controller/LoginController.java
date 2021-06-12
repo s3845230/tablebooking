@@ -1,18 +1,11 @@
 package main.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import main.model.LoginModel;
-import javafx.stage.Stage;
 
-import java.awt.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -44,7 +37,12 @@ public class LoginController extends SuperController implements Initializable {
             if (currentId > 0){
                 isAdmin = loginModel.isAdmin(currentId);
                 currentStatus.setText("Logged in successfully");
-                swapScene(pathToMenu);
+                if (isAdmin) {
+                    swapScene(pathToAdminMenu);
+                }
+                else {
+                    swapScene(pathToMenu);
+                }
 
             }else{
                 currentStatus.setText("username and password is incorrect");
@@ -53,27 +51,6 @@ public class LoginController extends SuperController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-    //11.2.3 big sur
-//TODO
-    // REGISTER -done
-    // RESET PASSWORD -done
-    // BOOKING -> GO TO ADMIN
-    // ADMIN
-        // CANCEL/REJECT BOOKING
-        // COVID SAFE SEATING
-        // COVID LOCKDOWN SEATS
-        // UPDATE ACCOUNTS
-        // REGISTER EMPLOYEES
-        // GENERATE CSV REPORT
-
-    // MAKE SPECIAL ADMIN MENU THAT ONLY ADMINS CAN ACCESS
-    // FIX REFRESH BUTTON IN BOOKING, UNNECESSARY
-    //
 
 
 

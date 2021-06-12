@@ -5,27 +5,36 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AdminAccountsController">
     <children>
-      <Label fx:id="isConnected11" layoutX="158.0" layoutY="35.0" text="Personal Details" />
-      <Label fx:id="isConnected1" layoutX="50.0" layoutY="80.0" text="Username:" />
-      <Label fx:id="isConnected12" layoutX="50.0" layoutY="110.0" text="Role:" />
-      <Label fx:id="isConnected121" layoutX="50.0" layoutY="140.0" text="First Name:" />
-      <Label fx:id="isConnected1211" layoutX="50.0" layoutY="170.0" text="Surname:" />
-      <Label fx:id="isConnected12111" layoutX="50.0" layoutY="200.0" text="Password:" />
-      <Label fx:id="isConnected121111" layoutX="50.0" layoutY="260.0" text="Secret Question:" />
-      <Label fx:id="isConnected1211111" layoutX="50.0" layoutY="320.0" text="Secret Question Answer:" />
-      <TextField fx:id="txtUsername" layoutX="210.0" layoutY="75.0" />
-      <TextField fx:id="txtRole" layoutX="210.0" layoutY="105.0" />
-      <TextField fx:id="txtFirstName" layoutX="210.0" layoutY="135.0" />
-      <TextField fx:id="txtSurname" layoutX="210.0" layoutY="165.0" />
-      <PasswordField fx:id="txtPassword" layoutX="210.0" layoutY="195.0" />
-      <TextArea fx:id="txtSecretQuestion" layoutX="210.0" layoutY="225.0" prefHeight="85.0" prefWidth="149.0" wrapText="true" />
-      <PasswordField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="315.0" />
+      <Label layoutX="158.0" layoutY="35.0" text="Personal Details" />
+      <Label layoutX="50.0" layoutY="80.0" text="Username:" />
+      <Label layoutX="50.0" layoutY="140.0" text="Employee ID:" />
+      <Label layoutX="50.0" layoutY="170.0" text="Role:" />
+      <Label layoutX="50.0" layoutY="200.0" text="First Name:" />
+      <Label layoutX="50.0" layoutY="230.0" text="Surname:" />
+      <Label layoutX="50.0" layoutY="260.0" text="Password:" />
+      <Label layoutX="50.0" layoutY="320.0" text="Secret Question:" />
+      <Label layoutX="50.0" layoutY="380.0" text="Secret Question Answer:" />
+      <ComboBox fx:id="txtUsername" editable="true" layoutX="210.0" layoutY="75.0" prefWidth="149.0" />
+      <TextField fx:id="txtID" layoutX="210.0" layoutY="135.0" />
+      <TextField fx:id="txtRole" layoutX="210.0" layoutY="165.0" />
+      <TextField fx:id="txtFirstName" layoutX="210.0" layoutY="195.0" />
+      <TextField fx:id="txtSurname" layoutX="210.0" layoutY="225.0" />
+      <TextField fx:id="txtPassword" layoutX="210.0" layoutY="255.0" />
+      <TextArea fx:id="txtSecretQuestion" layoutX="210.0" layoutY="285.0" prefHeight="85.0" prefWidth="149.0" wrapText="true" />
+      <TextField fx:id="txtSecretQuestionAnswer" layoutX="210.0" layoutY="375.0" />
 
-      <Button layoutX="130.0" layoutY="520.0" mnemonicParsing="false" onAction="#submitPDetails" prefWidth="140.0" text="Submit Changes" />
+      <Button layoutX="210.0" layoutY="495.0" mnemonicParsing="false" onAction="#updateAccount" prefWidth="110.0" text="Update Account" />
+      <Button layoutX="115.0" layoutY="535.0" mnemonicParsing="false" onAction="#generateAccountReport" prefWidth="170.0" text="Generate Account Report" />
         <Button layoutX="155.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToAdminMenu" prefWidth="90.0" text="Admin Menu" />
             <Label fx:id="currentStatus" layoutY="583.0" text="Status">
 
             </Label>
+      <CheckBox fx:id="isAdminBox" contentDisplay="CENTER" layoutX="166.0" layoutY="410.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Is Admin:" />
+      <Button layoutX="80.0" layoutY="495.0" mnemonicParsing="false" onAction="#deleteAccount" prefWidth="110.0" text="Delete Account" />
+      <Button layoutX="130.0" layoutY="455.0" mnemonicParsing="false" onAction="#createAccount" prefWidth="140.0" text="Create Account" />
+      <Label layoutX="73.0" layoutY="440.0" text="(Leave EmployeeID blank for automatic creation)" />
+      <Button layoutX="140.0" layoutY="105.0" mnemonicParsing="false" onAction="#loadUser" prefWidth="120.0" text="Find Account" />
+      <Button layoutX="150.0" layoutY="75.0" mnemonicParsing="false" onAction="#findUsers" prefWidth="55.0" text="Search" />
 
 
     </children>

@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
+//supercontoller made for easy access to all the pathToFile methods
 public class SuperController {
     @FXML
     protected Label currentStatus;
@@ -19,7 +20,6 @@ public class SuperController {
     protected int currentId = -1;
     protected boolean isAdmin = false;
     protected String pathToBooking = "/main/ui/booking.fxml";
-    protected String pathToBookingAdmin = "/main/ui/adminBooking.fxml";
     protected String pathToPDetails = "/main/ui/pDetails.fxml";
     protected String pathToMenu = "/main/ui/menu.fxml";
     protected String pathToLogin = "/main/ui/login.fxml";
@@ -29,7 +29,6 @@ public class SuperController {
     protected String pathToAdminBooking = "/main/ui/adminBooking.fxml";
     protected String pathToAdminAccounts = "/main/ui/adminAccounts.fxml";
 
-//    public void swapScene();
     void setCurrentId(int currentId) {
     this.currentId = currentId;
 }
@@ -38,6 +37,7 @@ public class SuperController {
     }
     public void setUp() throws SQLException {}
 
+    //swaps the current shown stage to a premade pathway
     void swapScene(String path) throws Exception {
         window = (Stage) currentStatus.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));

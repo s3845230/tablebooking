@@ -2,15 +2,10 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import main.model.BookingModel;
 import main.model.PDetailsModel;
 
 import java.net.URL;
@@ -46,6 +41,7 @@ public class PDetailsController extends SuperController implements Initializable
         }
     }
 
+    //pre-inputs personal details of employee signing in
     public void setUp() throws SQLException {
         currentDetails = pDetailsModel.getDetails(currentId);
         if (currentDetails.size() > 0) {
@@ -57,6 +53,7 @@ public class PDetailsController extends SuperController implements Initializable
         }
     }
 
+    // submits all submitted personal details through arrayLists. if fields are missing, keeps previous information
     public void submitPDetails(ActionEvent event) throws Exception{
         ArrayList<String> newDetails = new ArrayList<String>();
         newDetails.add(txtUsername.getText());
@@ -78,7 +75,4 @@ public class PDetailsController extends SuperController implements Initializable
             currentStatus.setText("Details not Updated");
         }
     }
-//    String query = "UPDATE Employees SET username = ? AND name = ? AND 'sure name' = ? AND password = ? AND role = ? AND " +
-//            "'secret question' = ? AND answer = ? WHERE id = ?";
-
 }

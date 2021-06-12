@@ -122,4 +122,145 @@ public class AdminBookingModel{
         catch(Exception e){
         }
     }
+    public void covidMinor(String date, int adminID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            for (int i = 1; i < 5; i++) {
+                String query = "SELECT * FROM Bookings WHERE tableid = ? AND date = ?";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, String.valueOf(i*2));
+                preparedStatement.setString(1, String.valueOf(date));
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    if (!resultSet.getString("status").equals("pending")) {
+                        preparedStatement = connection.prepareStatement("UPDATE Bookings SET status = ?, employeeid = ?, WHERE date = ? AND tableid = ?");
+                        preparedStatement.setString(1, "locked");
+                        preparedStatement.setString(2, String.valueOf(adminID));
+                        preparedStatement.setString(3, date);
+                        preparedStatement.setString(4, String.valueOf(i*2));
+
+                        preparedStatement.executeUpdate();
+                    }
+                    else {
+                        preparedStatement = connection.prepareStatement("DELETE FROM Bookings WHERE employeeid = ? AND date = ? AND tableid = ?");
+                        preparedStatement.setString(1, resultSet.getString("employeeid"));
+                        preparedStatement.setString(2, resultSet.getString("date"));
+                        preparedStatement.setString(3, resultSet.getString("tableid"));
+
+                        preparedStatement.executeUpdate();
+                    }
+
+                }
+                else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO Bookings (status, employeeid, date, tableid) VALUES (?, ? ,? ,?)");
+                    preparedStatement.setString(1, "locked");
+                    preparedStatement.setString(2, String.valueOf(adminID));
+                    preparedStatement.setString(3, date);
+                    preparedStatement.setString(4, String.valueOf(i*2));
+
+                    preparedStatement.executeUpdate();
+                }
+            }
+        }
+        catch(Exception e){
+        }
+    }
+
+    public void covidMajor(String date, int adminID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            for (int i = 1; i < 10; i++) {
+                String query = "SELECT * FROM Bookings WHERE tableid = ? AND date = ?";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, String.valueOf(i));
+                preparedStatement.setString(2, String.valueOf(date));
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    if (!resultSet.getString("status").equals("pending")) {
+                        preparedStatement = connection.prepareStatement("UPDATE Bookings SET status = ?, employeeid = ? WHERE date = ? AND tableid = ?");
+                        preparedStatement.setString(1, "locked");
+                        preparedStatement.setString(2, String.valueOf(adminID));
+                        preparedStatement.setString(3, date);
+                        preparedStatement.setString(4, String.valueOf(i));
+
+                        preparedStatement.executeUpdate();
+                    }
+                    else {
+                        preparedStatement = connection.prepareStatement("DELETE FROM Bookings WHERE employeeid = ? AND date = ? AND tableid = ?");
+                        preparedStatement.setString(1, resultSet.getString("employeeid"));
+                        preparedStatement.setString(2, resultSet.getString("date"));
+                        preparedStatement.setString(3, resultSet.getString("tableid"));
+
+                        preparedStatement.executeUpdate();
+                    }
+
+                }
+                else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO Bookings (status, employeeid, date, tableid) VALUES (?, ? ,? ,?)");
+                    preparedStatement.setString(1, "locked");
+                    preparedStatement.setString(2, String.valueOf(adminID));
+                    preparedStatement.setString(3, date);
+                    preparedStatement.setString(4, String.valueOf(i));
+
+                    preparedStatement.executeUpdate();
+                }
+                while (resultSet.next()) {
+                    if (!resultSet.getString("status").equals("pending")) {
+                        preparedStatement = connection.prepareStatement("UPDATE Bookings SET status = ?, employeeid = ? WHERE date = ? AND tableid = ?");
+                        preparedStatement.setString(1, "locked");
+                        preparedStatement.setString(2, String.valueOf(adminID));
+                        preparedStatement.setString(3, date);
+                        preparedStatement.setString(4, String.valueOf(i));
+
+                        preparedStatement.executeUpdate();
+                    }
+                    else {
+                        preparedStatement = connection.prepareStatement("DELETE FROM Bookings WHERE employeeid = ? AND date = ? AND tableid = ?");
+                        preparedStatement.setString(1, resultSet.getString("employeeid"));
+                        preparedStatement.setString(2, resultSet.getString("date"));
+                        preparedStatement.setString(3, resultSet.getString("tableid"));
+
+                        preparedStatement.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch(Exception e){}
+    }
+
+    public void covidNormal(String date, int adminID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            for (int i = 1; i < 10; i++) {
+                String query = "SELECT * FROM Bookings WHERE tableid = ? AND date = ?";
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, String.valueOf(i));
+                preparedStatement.setString(2, String.valueOf(date));
+                resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    if (resultSet.getString("status").equals("locked")) {
+                        preparedStatement = connection.prepareStatement("UPDATE Bookings SET status = ?, employeeid = ? WHERE date = ? AND tableid = ?");
+                        preparedStatement.setString(1, "open");
+                        preparedStatement.setString(2, String.valueOf(adminID));
+                        preparedStatement.setString(3, date);
+                        preparedStatement.setString(4, String.valueOf(i));
+
+                        preparedStatement.executeUpdate();
+                    }
+
+                }
+            }
+        }
+        catch(Exception e){}
+    }
+
+
+
+//    adminBookingModel.covidMajor(dateSelection.getValue(), currentId);
 }

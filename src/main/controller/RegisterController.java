@@ -3,11 +3,9 @@ package main.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import main.model.RegisterModel;
 
 import java.net.URL;
@@ -41,6 +39,7 @@ public class RegisterController extends SuperController implements Initializable
         }
     }
 
+        //registers information under the employee to the database
     public void register(ActionEvent event) throws Exception{
         boolean valid = true;
         ArrayList<String> newDetails = new ArrayList<String>();
@@ -56,7 +55,7 @@ public class RegisterController extends SuperController implements Initializable
                 valid = false;
             }
         }
-        if (registerModel.createDetails(newDetails, currentId)) {
+        if (registerModel.createDetails(newDetails, currentId) && valid) {
             currentStatus.setText("Details Updated");
         }
         else {

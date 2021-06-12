@@ -1,30 +1,24 @@
 package main.controller;
 
 import javafx.fxml.Initializable;
-import main.model.LoginModel;
+import main.model.BookingModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MenuController extends SuperController implements Initializable {
     @FXML
     private Button adminMenuButton;
 
-    public LoginModel loginModel = new LoginModel();
+    public BookingModel bookingModel = new BookingModel();
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        if (loginModel.isDbConnected()){
+        if (bookingModel.isDbConnected()){
             currentStatus.setText("Connected");
         }else{
             currentStatus.setText("Not Connected");
-        }
-    }
-    public void setUp() throws SQLException {
-        if (!isAdmin) {
-            adminMenuButton.setVisible(false);
         }
     }
 }

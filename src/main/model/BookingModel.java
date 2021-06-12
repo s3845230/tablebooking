@@ -29,23 +29,6 @@ public class BookingModel {
         }
     }
 
-//    public void dateCheck() throws SQLException{
-//        PreparedStatement preparedStatement = null;
-//        ResultSet resultSet=null;
-//        ArrayList<String> statusList = new ArrayList<>();
-//        try {
-//            String query = "select date from Bookings where tableid= 1";
-//            preparedStatement = connection.prepareStatement(query);
-////            preparedStatement.setString(1, sqlDate);
-//            resultSet = preparedStatement.executeQuery();
-//            System.out.println(resultSet.getString("date"));
-//        }
-//        catch (Exception e) {
-//        } finally {
-//            preparedStatement.close();
-//            resultSet.close();
-//        }
-//    }
     public ArrayList<String> tableStatus(String date) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -55,15 +38,11 @@ public class BookingModel {
                 boolean found = false;
                 String query = "select status from Bookings where date = ? and tableid= ?";
                 preparedStatement = connection.prepareStatement(query);
-//                System.out.println(date);
-//                System.out.println(i);
                 preparedStatement.setString(1, date);
                 preparedStatement.setString(2, String.valueOf(i));
-//                System.out.println(preparedStatement);
 
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
-//                    System.out.println("test");
                     if (resultSet.getString("status").equals("open") || resultSet.getString("status").equals("taken") || resultSet.getString("status").equals("locked")) {
                         statusList.add(resultSet.getString("status"));
                         found = true;
@@ -126,33 +105,19 @@ public class BookingModel {
             resultSet.close();
         }
     }
+    public void deleteBooking(int employeeID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        try {
+            String query = "DELETE FROM Bookings WHERE employeeid = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, String.valueOf(employeeID));
+            preparedStatement.executeUpdate();
+        }
+        catch(Exception e){
+        } finally{
+            preparedStatement.close();
+        }
+    }
 
-//    public Boolean isLogin(String user, String pass) throws SQLException {
-//        PreparedStatement preparedStatement = null;
-//        ResultSet resultSet=null;
-//        String query = "select * from employee where username = ? and password= ?";
-//        try {
-//
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, user);
-//            preparedStatement.setString(2, pass);
-//
-//            resultSet = preparedStatement.executeQuery();
-//            if (resultSet.next()) {
-//                return true;
-//            }
-//            else{
-//                return false;
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            return false;
-//        }finally {
-//           preparedStatement.close();
-//           resultSet.close();
-//        }
-//
-//    }
 
 }

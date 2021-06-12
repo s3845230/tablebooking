@@ -10,9 +10,8 @@
             </Label>
       <Button layoutX="130.0" layoutY="100.0" mnemonicParsing="false" onAction="#pathToAdminBooking" prefWidth="140.0" text="Manage Bookings" />
       <Button layoutX="130.0" layoutY="150.0" mnemonicParsing="false" onAction="#pathToAdminAccounts" prefWidth="140.0" text="Manage Accounts" />
-      <Button layoutX="130.0" layoutY="200.0" mnemonicParsing="false" prefWidth="140.0" text="Generate Report" />
       <Button layoutX="130.0" layoutY="250.0" mnemonicParsing="false" onAction="#pathToLogin" prefWidth="140.0" text="Log Out" />
-      <Button layoutX="155.0" layoutY="5.0" mnemonicParsing="false" onAction="#pathToMenu" prefWidth="90.0" text="Menu" />
+        <Label layoutX="165.0" layoutY="35.0" text="Admin Menu" />
     </children>
 
 </AnchorPane>

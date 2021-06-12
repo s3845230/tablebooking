@@ -42,7 +42,6 @@ public class RegisterModel {
             preparedStatement.setString(5, newDetails.get(4));
             preparedStatement.setString(6, newDetails.get(5));
             preparedStatement.setString(7, newDetails.get(6));
-            System.out.println(preparedStatement);
 
             preparedStatement.executeUpdate();
             return true;

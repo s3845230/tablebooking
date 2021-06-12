@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import java.util.Random;
 
 import java.net.URL;
@@ -39,6 +36,7 @@ public class ResetPasswordController extends SuperController implements Initiali
         }
     }
 
+        //checks whether username can be found
     public void acceptUsername(ActionEvent event) throws SQLException {
         targetUsername = txtUsername.getText();
         currentDetails = resetPasswordModel.getDetails(targetUsername);
@@ -52,6 +50,7 @@ public class ResetPasswordController extends SuperController implements Initiali
         }
     }
 
+        //creates a random string of numbers to provide as password, and set as password in the database.
     public void generatePassword(ActionEvent event) throws SQLException {
         if (secretQuestionAnswer.equals(txtSecretQuestionAnswer.getText())) {
             Random rand = new Random();

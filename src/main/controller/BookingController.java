@@ -2,23 +2,15 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import main.model.BookingModel;
-import org.w3c.dom.css.Rect;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class BookingController extends SuperController implements Initializable {
@@ -74,38 +66,46 @@ public class BookingController extends SuperController implements Initializable 
         }
     }
 
-
+    //takes new date to find and color the table statuses
     public void refreshDate(ActionEvent event) throws Exception{
-        if (dateSelection.getValue() != null) {
-            currentStatus.setText("Connected");
-            ArrayList<String> tableStatuses = bookingModel.tableStatus(String.valueOf(dateSelection.getValue()));
-            tableSelection.getItems().clear();
-            for (int i = 0; i < 9; i++) {
-                String status = tableStatuses.get(i);
-                if (status.equals("open")) {
-                    rectangles.get(i).setFill(Color.GREEN);
-                    tableSelection.getItems().add("Table " + (i+1));
+        try {
+            if (dateSelection.getValue() != null) {
+                currentStatus.setText("Connected");
+                ArrayList<String> tableStatuses = bookingModel.tableStatus(String.valueOf(dateSelection.getValue()));
+                tableSelection.getItems().clear();
+                for (int i = 0; i < 9; i++) {
+                    String status = tableStatuses.get(i);
+                    if (status.equals("open")) {
+                        rectangles.get(i).setFill(Color.GREEN);
+                        tableSelection.getItems().add("Table " + (i + 1));
+                    }
+                    if (status.equals("pending")) {
+                        rectangles.get(i).setFill(Color.GREEN);
+                        tableSelection.getItems().add("Table " + (i + 1));
+                    }
+                    if (status.equals("taken")) {
+                        rectangles.get(i).setFill(Color.RED);
+                    }
+                    if (status.equals("locked")) {
+                        rectangles.get(i).setFill(Color.ORANGE);
+                    }
                 }
-                if (status.equals("pending")) {
-                    rectangles.get(i).setFill(Color.GREEN);
-                    tableSelection.getItems().add("Table " + (i+1));
-                }
-                if (status.equals("taken")) {
-                    rectangles.get(i).setFill(Color.RED);
-                }
-                if (status.equals("locked")) {
-                    rectangles.get(i).setFill(Color.ORANGE);
-                }
+            } else {
+                currentStatus.setText("Date required");
             }
-        }
-        else {
-            currentStatus.setText("Date required");
-        }
+        } catch (Exception e) {}
     }
-
+    //submits booking, removing any other bookings owned by the employee
     public void submitBooking(ActionEvent event) throws Exception {
-        int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
-        bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable, currentId);
-        //implement desk checking if you can, alot of work
+        try {
+            int bookedTable = String.valueOf(tableSelection.getValue()).charAt(6)-'0';
+            bookingModel.updateBooking(String.valueOf(dateSelection.getValue()), bookedTable, currentId);
+        } catch (Exception e) {}
+    }
+    //removes all bookings by employee
+    public void cancelNextBooking(ActionEvent event) throws Exception {
+        try {
+            bookingModel.deleteBooking(currentId);
+        } catch (Exception e) {}
     }
 }
